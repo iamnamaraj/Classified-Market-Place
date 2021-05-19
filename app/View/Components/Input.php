@@ -3,6 +3,7 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
+use Illuminate\View\View;
 
 class Input extends Component
 {
@@ -11,9 +12,15 @@ class Input extends Component
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(
+        public $text,
+        public $field,
+        public $type ="text",
+        public $current="",
+        public $required = false,
+    )
     {
-        //
+        
     }
 
     /**
@@ -21,7 +28,7 @@ class Input extends Component
      *
      * @return \Illuminate\Contracts\View\View|\Closure|string
      */
-    public function render()
+    public function render(): View
     {
         return view('components.input');
     }
