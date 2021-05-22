@@ -3,19 +3,19 @@
 
     @if ($type == "textarea")
     <textarea 
-    id="{{$field }}"
-    name="{{$field}}"
-    class="form-control @error($field) is invalid @enderror"
+    id="{{ $field }}"
+    name="{{ $field }}"
+    class="form-control @error($field) is-invalid @enderror"
     >{{ old($field) ?? $current }}</textarea>
         
     @else
 
     <input 
     type="{{ $type }}"
-    id="{{$field }}"
-    name="{{$field}}"
-    value="{{old($field) ?? $current}}"
-    class="form-control @error($field) is invalid @enderror"
+    id="{{ $field }}"
+    name="{{ $field}}"
+    value="{{ old($field) ?? $current }}"
+    class="form-control @error($field) is-invalid @enderror"
 
     />
     @endif
