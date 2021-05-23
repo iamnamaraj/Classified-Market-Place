@@ -1,4 +1,4 @@
-<?
+<?php
 
 namespace App\Services;
 
@@ -17,14 +17,14 @@ class MediaService
 
 
         //Get File Extension
-        $text = $file->extension();
+        $ext = $file->extension();
 
         //Get File Type
         $type = $file->getMimeType();
 
         //File path and folder
-        $folderpath = "pulic/" . $folder;
-        $filePath = str::random(10) . "." . $text;
+        $folderpath = "public/" . $folder;
+        $filePath = str::random(10) . "." . $ext;
 
         //Save File to disk
         $file->storeAs($folderpath, $filePath);
@@ -39,3 +39,4 @@ class MediaService
         return $media->id;
     }
 }
+

@@ -51,6 +51,12 @@
                 </select>
             </div>
 
+            <x-input
+                type="file"
+                field="image"
+                text="Profile Picture"
+            />
+
             <button type="submit" class="btn btn-primary">
 
                 <i class="fas fa-fw fa-save mr-2"></i>
