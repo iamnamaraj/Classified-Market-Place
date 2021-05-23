@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Services\MediaService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rules\Password;
 use phpDocumentor\Reflection\Types\Nullable;
 
 class UserController extends Controller
@@ -45,7 +46,7 @@ class UserController extends Controller
 
             'name'=> ['required', 'max:100'],
             'email' => ['required', 'email', 'unique:users,email'],
-            'password' => ['required', 'min:6'],
+            'password' => ['required', Password::min(6)->mixedCase()->numbers()->symbols()->uncompromised()],
             'role' => ['required', Rule::in($this->roles)],
             'image' => ['nullable', 'image', 'mimes:jpeg,gif,png'],
         ]);
@@ -106,7 +107,7 @@ class UserController extends Controller
         if ($request->hasFile('image')) {
 
             if($user->media_id && $user->media) {
-                
+
                 Storage::delete('public/' . $user->media->path);
             }
             $data['media_id'] = (new MediaService)->upload($request->file('image'), "users");

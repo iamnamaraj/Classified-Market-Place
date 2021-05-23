@@ -3,6 +3,8 @@
 @section('title', 'Users List')
 
 @section('content')
+
+<x-alert />
 <div class="card">
     <div class="card-header">
         <h3 class="card-title text-bold" style="font-size: 1.3rem;lin-hight: 1.5">Users List</h3>
@@ -12,6 +14,9 @@
         </div>
     </div>
     <div class="card-body p-0">
+        @if (count($users) > 0)
+            
+
         <table class="table table-bordered table-striped">
             <thead class="thead-dark">
                 <tr>
@@ -39,6 +44,22 @@
                 @endforeach
             </tbody>
         </table>
+
+        @else
+        <div class="alert alert-warning mb-0 text-center">
+
+            There are no items in the Table.
+
+        </div>
+            
+        @endif
     </div>
+
+    @if ($users->perpage() < $users->total())
+      <div class="card-footer">
+        {{ $users->links() }}      
+    </div>  
+    @endif
+
 </div>
 @endsection
