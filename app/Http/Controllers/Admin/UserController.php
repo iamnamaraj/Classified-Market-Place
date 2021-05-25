@@ -69,7 +69,7 @@ class UserController extends Controller
     
     public function show(user $user): View
     {
-        return view('admin.users.show', compact('users'));
+        return view('admin.users.show', compact('user'));
     }
 
     
@@ -78,7 +78,7 @@ class UserController extends Controller
     public function edit(user $user): View
     {
         $roles = $this->roles;
-        return view('admin.users.edit', compact('users'));
+        return view('admin.users.edit', compact('user', 'roles'));
     }
 
 
@@ -91,12 +91,12 @@ class UserController extends Controller
             'name' => ['required', 'max:100'],
             'email' => ['required', 'email', 'unique:users,email,' . $user->id],
             'password' => ['nullable', 'min:6'],
-            'role' => ['reuired', Rule::in($this->roles)],
+            'role' => ['required', Rule::in($this->roles)],
             'image' => ['nullable', 'image', 'mimes:jpeg,gif,png'],
         ]);
-        if(!empty($passwprd)) {
+        if(!empty($password)) {
 
-            $data['password'] = bcrypt($data['passsword']);
+            $data['password'] = bcrypt($data['password']);
 
         } else {
             unset($data['password']);

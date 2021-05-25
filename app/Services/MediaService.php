@@ -23,11 +23,11 @@ class MediaService
         $type = $file->getMimeType();
 
         //File path and folder
-        $folderpath = "public/" . $folder;
+        $folderPath = "public/" . $folder;
         $filePath = str::random(10) . "." . $ext;
 
         //Save File to disk
-        $file->storeAs($folderpath, $filePath);
+        $file->storeAs($folderPath, $filePath);
 
         //Record uploaded file in Media Table
         $media = Media::create([

@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\Media;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
@@ -47,6 +48,17 @@ class User extends Authenticatable
 
     public function media() : BelongsTo
     {
-        return $this->belongsTo('media::class');
+        return $this->belongsTo(Media::class);
+    }
+
+    public function getImageAttribute(): string
+    {
+
+        if($this->media_id && $this->media) {
+return "/storage/" . $this->media->path;
+
+        }
+
+        return "";
     }
 }
