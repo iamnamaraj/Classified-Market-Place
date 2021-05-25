@@ -5,6 +5,7 @@
 @section('content')
 
 <x-alert />
+<x-delete />
 <div class="card">
     <div class="card-header">
         <h3 class="card-title text-bold" style="font-size: 1.3rem;lin-hight: 1.5">Users List</h3>
@@ -37,7 +38,17 @@
                     <td>{{ $user->role }}</td>
                     <td>{{ $user->created_at }}</td>
                     <td> 
-                        Show | Edit | Delete
+                        <a href="{{ route('admin.users.show', $user) }}" class="btn btn-primary btn-sm">Show</a>    
+                        <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-success btn-sm">Edit</a>    
+                        <a href="#!" onclick="confirmDelete({{ $user->id }})" class="btn btn-danger btn-sm">Delete</a>
+
+                        <!--Delete form -->
+                        <form id="delete-form-{{ $user->id }}"
+                             action="{{ route('admin.users.destroy', $user) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+
+                            </form>
                     </td>
                 </tr>
                     

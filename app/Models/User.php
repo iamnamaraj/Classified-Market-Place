@@ -51,14 +51,14 @@ class User extends Authenticatable
         return $this->belongsTo(Media::class);
     }
 
-    public function getImageAttribute(): string
+    public function getImageAttribute(): ?string
     {
 
         if($this->media_id && $this->media) {
-return "/storage/" . $this->media->path;
+            return "/storage/" . $this->media->path;
 
         }
 
-        return "";
+        return "null";
     }
 }
