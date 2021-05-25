@@ -27,7 +27,7 @@
 
 
 @if (session('success'))
-<div class="alert alert-sucess alert-dismissible fade show" role="alert">
+<div class="alert alert-success alert-dismissible fade show" role="alert">
 <i class="fas fa-fw fa-check-circle mr-2"></i>
 
     <span>{{ session('success') }}</span>

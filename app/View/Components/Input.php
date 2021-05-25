@@ -7,11 +7,7 @@ use Illuminate\View\View;
 
 class Input extends Component
 {
-    /**
-     * Create a new component instance.
-     *
-     * @return void
-     */
+   
     public function __construct(
         public $text,
         public $field,
@@ -23,11 +19,7 @@ class Input extends Component
         
     }
 
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
-     */
+   
     public function render(): View
     {
         return view('components.input');
