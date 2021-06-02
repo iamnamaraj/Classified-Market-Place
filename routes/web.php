@@ -15,6 +15,7 @@ Route::get('/home', [\App\Http\Controllers\SiteController::class, 'home'])
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function() {
 Route::get('/', [\App\Http\Controllers\Admin\AdminController::class, 'index'])->name('index');
 Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
+Route::get('categories/generate-slug',[\App\Http\Controllers\Admin\CategoryController::class, 'generateSlug'])->name('categories.slug');
 Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class);
     
 

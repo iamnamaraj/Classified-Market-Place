@@ -2,6 +2,36 @@
 
 @section('title', 'Add New Category')
 
+@push('js')
+<script>
+    
+
+    $('#name').keyup(function() {
+         let title = document.getElementById('name').value;
+
+        if(title == '') {
+            $('#slug-suggest').hide();
+        }
+         $.ajax({url: "{{ route('admin.categories.slug') }}", 
+         data: { title: title },
+         success: function(result){
+
+                 $("#slug-suggest").slideDown();
+                 $("#slug-title").text(result);
+             }
+        });
+    });
+
+
+    $('#slug-title').on('click', function(e) {
+        e.preventDefault();
+
+        $('#slug').val($('#slug-title').text());
+    })  
+</script>
+    
+@endpush
+
 @section('content')
 <div class="card">
 
@@ -30,6 +60,10 @@
                 field="slug"
                 text="URL Slug"
             /> 
+
+            <div class="form-test mb-3 text-muted" style="display:none" id="slug-suggest">
+                suggestion: <a href="#" id="slug-title"></a>
+            </div>
 
 
 
